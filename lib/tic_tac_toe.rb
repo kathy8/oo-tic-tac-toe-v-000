@@ -96,7 +96,7 @@ def display_board
    end
    end
    end
-   
+
    def full?
    if @board.detect { |i| i.include?(" ") }
    false
@@ -104,7 +104,7 @@ def display_board
    true
    end
  end
-   
+
    def draw?
    if !won? && full?
    true
@@ -112,7 +112,7 @@ def display_board
    false
    end
    end
-   
+
    def over?
    if !full? && !won? && !draw?
     false
@@ -120,17 +120,17 @@ def display_board
     true
     end
     end
-  
+
     def winner
     WIN_COMBINATIONS.detect do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
-  
+
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
-  
+
     if position_1 == "X" && position_2 == "X" && position_3 == "X"
     return "X"
     elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
@@ -140,7 +140,7 @@ def display_board
     end
     end
     end
-  
+
     def play
     while !over?
     turn
@@ -150,6 +150,6 @@ def display_board
     else draw?
     puts "Cat's Game!"
    end
-  end
-  
-  end
+   end
+
+   end
