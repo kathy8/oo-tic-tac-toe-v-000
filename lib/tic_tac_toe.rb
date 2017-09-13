@@ -68,7 +68,7 @@ def display_board
   end
   counter
   end
-  
+
   def current_player
   if turn_count % 2 == 0
       "X"
@@ -76,80 +76,80 @@ def display_board
       "O"
   end
   end
-  
+
     def won?
     WIN_COMBINATIONS.detect do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
+
+    position_1 = board[win_index_1]
+    position_2 = board[win_index_2]
+    position_3 = board[win_index_3]
+
+   if position_1 == "X" && position_2 == "X" && position_3 == "X"
+   return win_combination
+   elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+   return win_combination
+   else
+   false
+   end
+   end
+   end
+   
+   def full?
+   if @board.detect { |i| i.include?(" ") }
+   false
+   else
+   true
+   end
+ end
+   
+   def draw?
+   if !won? && full?
+   true
+   else
+   false
+   end
+   end
+   
+   def over?
+   if !full? && !won? && !draw?
+    false
+    else
+    true
+    end
+    end
   
-    +    position_1 = board[win_index_1]
-   +    position_2 = board[win_index_2]
-   +    position_3 = board[win_index_3]
-   +
-   +    if position_1 == "X" && position_2 == "X" && position_3 == "X"
-   +      return win_combination
-   +    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-   +      return win_combination
-   +    else
-   +      false
-   +    end
-   +    end
-   +  end
-   +
-   +  def full?
-   +    if @board.detect { |i| i.include?(" ") }
-   +    false
-   +  else
-   +    true
-   +    end
-   +  end
-   +
-   +  def draw?
-   +    if !won? && full?
-   +      true
-   +    else
-   +      false
-   +    end
-   +  end
-   +
-   +  def over?
-   +    if !full? && !won? && !draw?
-   +      false
-   +    else
-   +      true
-   +  end
-   +  end
-   +
-   +  def winner
-   +    WIN_COMBINATIONS.detect do |win_combination|
-   +    win_index_1 = win_combination[0]
-   +    win_index_2 = win_combination[1]
-   +    win_index_3 = win_combination[2]
-   +
-   +    position_1 = board[win_index_1]
-   +    position_2 = board[win_index_2]
-   +    position_3 = board[win_index_3]
-   +
-   +    if position_1 == "X" && position_2 == "X" && position_3 == "X"
-   +      return "X"
-   +    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-   +      return "O"
-   +    else draw?
-   +      nil
-   +    end
-   +  end
-   +  end
-   +
-   +  def play
-   +    while !over?
-   +      turn
-   +  end
-   +    if won?
-   +      puts "Congratulations #{winner}!"
-   +  else draw?
-   +     puts "Cat's Game!"
-   +   end
-   +  end
-   +
-   +end
+    def winner
+    WIN_COMBINATIONS.detect do |win_combination|
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+  
+    position_1 = board[win_index_1]
+    position_2 = board[win_index_2]
+    position_3 = board[win_index_3]
+  
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+    return "X"
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+    return "O"
+    else draw?
+    nil
+    end
+    end
+    end
+  
+    def play
+    while !over?
+    turn
+    end
+    if won?
+    puts "Congratulations #{winner}!"
+    else draw?
+    puts "Cat's Game!"
+   end
+  end
+  
+  end
