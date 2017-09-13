@@ -154,3 +154,4 @@ def display_board
     puts "Cat's Game!"
    end
    end
+end
