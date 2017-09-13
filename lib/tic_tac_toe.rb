@@ -46,44 +46,44 @@ def display_board
   true
   end
   end
-  
+
   def turn
   puts "Please enter 1-9:"
    user_input = gets.strip
    index = input_to_index(user_input)
    if valid_move?(index)
    move(index, current_player)
-   +      display_board
-   +    else
-   +      turn
-   +    end
-   +  end
-   +
-   +  def turn_count
-   +    counter = 0
-   +    @board.each do |current_player|
-   +      if current_player == "X" || current_player == "O"
-   +        counter += 1
-   +      end
-   +      end
-   +      counter
-   +  end
-   +
-   +  def current_player
-   +    if turn_count % 2 == 0
-   +      "X"
-   +    else
-   +      "O"
-   +    end
-   +  end
-   +
-   +  def won?
-   +    WIN_COMBINATIONS.detect do |win_combination|
-   +    win_index_1 = win_combination[0]
-   +    win_index_2 = win_combination[1]
-   +    win_index_3 = win_combination[2]
-   +
-   +    position_1 = board[win_index_1]
+   display_board
+   else
+   turn
+   end
+   end
+
+  def turn_count
+  counter = 0
+  @board.each do |current_player|
+  if current_player == "X" || current_player == "O"
+  counter += 1
+  end
+  end
+  counter
+  end
+  
+  def current_player
+  if turn_count % 2 == 0
+      "X"
+  else
+      "O"
+  end
+  end
+  
+    def won?
+    WIN_COMBINATIONS.detect do |win_combination|
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+  
+    +    position_1 = board[win_index_1]
    +    position_2 = board[win_index_2]
    +    position_3 = board[win_index_3]
    +
